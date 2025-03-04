@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un média</title>
+</head>
+<body>
+    <h1>Ajouter un média</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Titre : <input type="text" name="title"></label><br>
+        <label>Type :
+            <select name="media_type">
+                <option value="Book">Livre</option>
+                <option value="DVD">DVD</option>
+                <option value="CD">CD</option>
+                <option value="BoardGame">Jeu de société</option>
+            </select>
+        </label><br>
+        <label>Auteur (Livre) : <input type="text" name="author"></label><br>
+        <label>Réalisateur (DVD) : <input type="text" name="director"></label><br>
+        <label>Artiste (CD) : <input type="text" name="artist"></label><br>
+        <label>Créateur (Jeu de société) : <input type="text" name="creator"></label><br>
+        <button type="submit">Sauvegarder</button>
+        <a href="{% url 'bibliothecaire:media_list' %}"><button type="button">Annuler</button></a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if borrower %}Modifier{% else %}Ajouter{% endif %} un emprunteur</title>
+</head>
+<body>
+    <h1>{% if borrower %}Modifier{% else %}Ajouter{% endif %} un emprunteur</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Nom : <input type="text" name="name" value="{{ borrower.name|default:'' }}"></label><br>
+        <label>Prénom : <input type="text" name="first_name" value="{{ borrower.first_name|default:'' }}"></label><br>
+        <label>Adresse email : <input type="email" name="email" value="{{ borrower.email|default:'' }}"></label><br>
+        <label>Bloqué : <input type="checkbox" name="blocked" {% if borrower.blocked %}checked{% endif %}></label><br>
+        <input type="submit" value="Sauvegarder">
+    </form>
+    <a href="{% url 'bibliothecaire:borrower_list' %}">Retour</a>
+</body>
+</html>

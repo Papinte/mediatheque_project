@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenue à la Médiathèque</title>
+</head>
+<body>
+    <h1>Bienvenue à la Médiathèque "Notre Livre, Notre Média"</h1>
+    <p>Choisissez votre accès :</p>
+    <a href="{% url 'membre:media_list' %}">
+      <button>Accéder en tant que Membre (Consultation uniquement)</button></a><br><br>
+    <a href="{% url 'login' %}?next=/bibliothecaire/">
+      <button>Accéder en tant que Bibliothécaire (Connexion requise)</button></a>
+</body>
+</html>

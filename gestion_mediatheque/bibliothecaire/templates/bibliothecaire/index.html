@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Tableau de bord de la Médiathèque</h1>
+    <a href="{% url 'bibliothecaire:borrower_list' %}">Gérer les emprunteurs</a><br>
+    <a href="{% url 'bibliothecaire:media_list' %}">Gérer les médias</a>
+</body>
+</html>

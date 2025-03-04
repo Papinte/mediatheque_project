@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emprunter {{ media.title }}</title>
+</head>
+<body>
+    <h1>Emprunter {{ media.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Emprunteur :
+            <select name="borrower">
+                {% for borrower in borrowers %}
+                    <option value="{{ borrower.id }}">{{ borrower.name }} {{ borrower.first_name }}</option>
+                {% endfor %}
+            </select>
+        </label><br>
+        <input type="submit" value="Emprunter">
+    </form>
+    <a href="{% url 'bibliothecaire:media_list' %}">Annuler</a>
+</body>
+</html>

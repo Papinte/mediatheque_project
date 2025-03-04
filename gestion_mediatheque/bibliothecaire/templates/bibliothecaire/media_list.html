@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des médias</title>
+</head>
+<body>
+    <h1>Liste des médias</h1>
+    <a href="{% url 'bibliothecaire:media_create' %}">Ajouter un nouveau média</a>
+    <ul>
+        {% for item in books %}
+            <li>
+                {{ item.title }} (Livre) -
+                {% if item.available %}
+                    Disponible
+                    <a href="{% url 'bibliothecaire:borrow_media' item.id %}">Emprunter</a>
+                {% else %}
+                    Emprunté par {{ item.borrower.name }} {{ item.borrower.first_name }}
+                    <form method="post" action="{% url 'bibliothecaire:return_media' item.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Retourner</button>
+                    </form>
+                {% endif %}
+                <a href="{% url 'bibliothecaire:book_update' item.id %}">Modifier</a>
+                <form method="post" action="{% url 'bibliothecaire:book_delete' item.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce média ?')">Supprimer</button>
+                </form>
+            </li>
+        {% endfor %}
+        {% for item in dvds %}
+            <li>
+                {{ item.title }} (DVD) -
+                {% if item.available %}
+                    Disponible
+                    <a href="{% url 'bibliothecaire:borrow_media' item.id %}">Emprunter</a>
+                {% else %}
+                    Emprunté par {{ item.borrower.name }} {{ item.borrower.first_name }}
+                    <form method="post" action="{% url 'bibliothecaire:return_media' item.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Retourner</button>
+                    </form>
+                {% endif %}
+                <a href="{% url 'bibliothecaire:dvd_update' item.id %}">Modifier</a>
+                <form method="post" action="{% url 'bibliothecaire:dvd_delete' item.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce média ?')">Supprimer</button>
+                </form>
+            </li>
+        {% endfor %}
+        {% for item in cds %}
+            <li>
+                {{ item.title }} (CD) -
+                {% if item.available %}
+                    Disponible
+                    <a href="{% url 'bibliothecaire:borrow_media' item.id %}">Emprunter</a>
+                {% else %}
+                    Emprunté par {{ item.borrower.name }} {{ item.borrower.first_name }}
+                    <form method="post" action="{% url 'bibliothecaire:return_media' item.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Retourner</button>
+                    </form>
+                {% endif %}
+                <a href="{% url 'bibliothecaire:cd_update' item.id %}">Modifier</a>
+                <form method="post" action="{% url 'bibliothecaire:cd_delete' item.id %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce média ?')">Supprimer</button>
+                </form>
+            </li>
+        {% endfor %}
+        {% for item in boardgames %}
+            <li>{{ item.title }} (Jeu de société) - Disponible
+                <a href="{% url 'bibliothecaire:boardgame_update' item.id %}">Modifier</a>
+                <form method="post" action="{% url 'bibliothecaire:boardgame_delete' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce média ?')">Supprimer</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'bibliothecaire:index' %}">Retour au tableau de bord</a>
+</body>
+</html>

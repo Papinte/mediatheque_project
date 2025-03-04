@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifier un média</title>
+</head>
+<body>
+    <h1>Modifier un média</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Titre : <input type="text" name="title" value="{{ media.title }}"></label><br>
+        <label>Type :
+            <select name="media_type" disabled>
+                <option value="Book" {% if media_type == 'Book' %}selected{% endif %}>Livre</option>
+                <option value="DVD" {% if media_type == 'DVD' %}selected{% endif %}>DVD</option>
+                <option value="CD" {% if media_type == 'CD' %}selected{% endif %}>CD</option>
+                <option value="BoardGame" {% if media_type == 'BoardGame' %}selected{% endif %}>Jeu de société</option>
+            </select>
+        </label><br>
+        {% if media_type == 'Book' %}
+            <label>Auteur (Livre) : <input type="text" name="author" value="{{ media.author }}"></label><br>
+        {% endif %}
+        {% if media_type == 'DVD' %}
+            <label>Réalisateur (DVD) : <input type="text" name="director" value="{{ media.director }}"></label><br>
+        {% endif %}
+        {% if media_type == 'CD' %}
+            <label>Artiste (CD) : <input type="text" name="artist" value="{{ media.artist }}"></label><br>
+        {% endif %}
+        {% if media_type == 'BoardGame' %}
+            <label>Créateur (Jeu de société) : <input type="text" name="creator" value="{{ media.creator }}"></label><br>
+        {% endif %}
+        <button type="submit">Sauvegarder</button>
+        <a href="{% url 'bibliothecaire:media_list' %}"><button type="button">Annuler</button></a>
+    </form>
+</body>
+</html>

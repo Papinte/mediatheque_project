@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des médias (membre)</title>
+</head>
+<body>
+    <h1>liste des médias</h1>
+    <ul>
+        {% for item in books %}
+            <li>{{ item.title }} (Livre) -
+                {% if item.available %}Disponible{% else %}Non disponible{% endif %}
+            </li>
+        {% empty %}
+            <li>Aucun livre disponible.</li>
+        {% endfor %}
+        {% for item in dvds %}
+            <li>{{ item.title }} (DVD) -
+                {% if item.available %}Disponible{% else %}Non disponible{% endif %}
+            </li>
+        {% empty %}
+            <li>Aucun DVD disponible.</li>
+        {% endfor %}
+        {% for item in cds %}
+            <li>{{ item.title }} (CD) -
+                {% if item.available %}Disponible{% else %}Non disponible{% endif %}
+            </li>
+        {% empty %}
+            <li>Aucun CD disponible.</li>
+        {% endfor %}
+        {% for item in board_games %}
+            <li>{{ item.title }} (Jeu de société) - Disponible</li>
+        {% empty %}
+            <li>Aucun jeu de société disponible.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

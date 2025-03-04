@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connexion Bibliothécaire</title>
+</head>
+<body>
+    <h1>Connexion à la Médiathèque</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Se connecter">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+    {% if form.errors %}
+        <p>Nom d'utilisateur ou mot de passe incorrect. Essayez à nouveau.</p>
+    {% endif %}
+    <a href="{% url 'homepage' %}">Retour à l'accueil</a>
+</body>
+</html>
